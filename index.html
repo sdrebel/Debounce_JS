@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <script>
+      function onInputDebounced(value) {
+        console.log(value);
+      }
+
+      function saveInput() {
+        console.log("hi");
+      }
+      function debounce(func, timeout = 300) {
+        let timer;
+        return (...args) => {
+          //  console.log(args);
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            func.apply(this, args);
+          }, timeout);
+        };
+      }
+      const processChange = debounce(() => saveInput());
+
+      processChange1 = debounce(() => onInputDebounced);
+    </script>
+  </head>
+
+  <body>
+    <!-- <input
+      type="text"
+      id="debounced"
+      oninput="processChange1({ value:this.value})"
+    /> -->
+    <button onclick="processChange()">Click me</button>
+    <script src="src/index.js"></script>
+  </body>
+</html>
